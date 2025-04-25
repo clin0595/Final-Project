@@ -1,0 +1,39 @@
+.spendingBox {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0.875rem 1.125rem;
+  border: 2px solid #d8d8d8;
+  border-radius: 11px;
+  min-width: 450px;
+}
+.spendingTitle {
+  font-size: 18px;
+  line-height: 18px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.itemName {
+  background-color: #cee5c5;  
+  max-width: 400px;
+}
+
+.add {
+  display: flex;
+  margin-top: 10px;
+  max-width: 400px;
+  overflow-wrap: normal;
+  color: white;
+  font-weight: 400;
+}
+
+#totalSpendings{
+  align-self: center;
+  font-size: 15px;
+  line-height: 17px;
+  padding: 15px;
+  width: 300px;
+  overflow-wrap: break-word;
+  text-align: center;
+}

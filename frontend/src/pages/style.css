@@ -1,0 +1,59 @@
+.spendings {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.spendingTotal {
+  font-size: 1.5rem;
+  background-color: #56694f;
+  padding: 10px; 
+  border-radius: 5px;
+  color: #cee5c5;
+}
+
+.spendingBox {
+  background-color: #56694f;
+  border-radius: 20px;
+}
+
+.spendingTitle {
+  font-size: 1.5rem;
+  text-align: center;
+  background-color: #fdf1d1;
+  padding: 20px; 
+  border-radius: 5px;
+  color: #cd9b59;
+}
+
+.heading {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  padding: 50px;
+  background-color: #56694f;
+  align-items: center;
+}
+
+.text {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.title {
+  color: #cee5c5;
+  font-size: 3rem;
+}
+
+.coins {
+  margin-left: 100px;
+  width: 300px;
+}
