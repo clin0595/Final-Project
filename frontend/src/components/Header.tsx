@@ -39,8 +39,8 @@ const useStyles = createStyles((theme) => ({
         textDecoration: "none",
         color:
             theme.colorScheme === "dark"
-                ? theme.colors.dark[0]
-                : theme.colors.gray[7],
+                ? theme.colors.dark[1]
+                : theme.colors.green[9],
         fontSize: theme.fontSizes.sm,
         fontWeight: 500,
 
@@ -54,14 +54,14 @@ const useStyles = createStyles((theme) => ({
 
     linkActive: {
         "&, &:hover": {
-            backgroundColor: theme.fn.variant({
-                variant: "light",
-                color: theme.primaryColor,
-            }).background,
-            color: theme.fn.variant({
-                variant: "light",
-                color: theme.primaryColor,
-            }).color,
+            backgroundColor:
+                theme.colorScheme === "dark"
+                    ? theme.colors.dark[0]
+                    : theme.colors.yellow[1],
+            color:
+                theme.colorScheme === "dark"
+                    ? theme.colors.dark[1]
+                    : theme.colors.green[8],
         },
     },
 }));
