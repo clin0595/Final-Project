@@ -1,3 +1,10 @@
+.finance{
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  flex-direction: column;
+}
+
 .spendings {
   display: flex;
   gap: 30px;
@@ -5,6 +12,7 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
 
 .spendingTotal {
   font-size: 1.5rem;
@@ -14,10 +22,39 @@
   color: #cee5c5;
 }
 
+#notes{
+  width: 358px;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px; 
+  overflow: hidden;
+  resize: none;
+}
+
+#totalSpendings{
+  align-self: center;
+  font-size: 15px;
+  line-height: 17px;
+  padding: 15px;
+  width: 300px;
+  overflow-wrap: break-word;
+  text-align: center;
+}
 .spendingBox {
   background-color: #56694f;
   border-radius: 20px;
+  display: flex;
+  flex-direction: column; 
+  align-items: stretch;
+  justify-content: center;
+  
 }
+
+.newSpendingTypeButton{
+  display: flex;
+  margin: 0 auto;
+}
+
 
 .spendingTitle {
   font-size: 1.5rem;
@@ -56,4 +93,64 @@
 .coins {
   margin-left: 100px;
   width: 300px;
+}
+
+.addItem{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.summaryContainer{
+  margin: 0 auto;
+  margin-top: 10px;
+  background-color: #56694f;
+  border-radius: 20px;
+  width: 1100px;
+  padding: 10px;
+}
+.summaryTitle{
+  text-align: center;
+}
+.summaryBox {
+  display: flex;
+}
+.summaryContext {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 30%;
+}
+
+.info{
+  background-color: white;
+  margin: 7px;
+  padding: 10px;
+  border-radius: 10px;
+  flex: 1;
+}
+
+.dataContainer{
+  display: flex;
+  margin-left: 50px;
+}
+.dataBox{
+  display: flex;
+  flex-direction: column;
+}
+
+.bugettingTitle{
+  text-align: left;
+}
+
+.data{
+  position: relative;
+  margin-top: 8px;
+}
+
+.chart{
+  margin-left: 125px;
+  padding-top: 50px;
+  display: flex;
 }

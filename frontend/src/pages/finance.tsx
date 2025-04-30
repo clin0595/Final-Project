@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SpendingCard from "../components/SpendingCard";
+import Summary from "../components/Summary";
 import "./style.css";
 
 
@@ -10,7 +11,24 @@ const Finance = () => {
   const [spendings, setSpendings] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const [newName, setNewName] = useState("");
-  
+  const [allCategory, setAllCategory] = useState<SpendingCategory[]>([])
+  const handletotal = (newTotal: number, index: number) => {
+    setSpendings(spendings + newTotal);
+    allCategory[index].total += newTotal;
+
+    setAllCategory(prev => 
+      prev.map((cat, i) => {
+        if (i === index) {
+          return {
+            ...cat,
+            total: cat.total + newTotal,
+          };
+        } else {
+          return cat;
+        }
+      })
+    );
+  };
 
   const handleNewTypeClick = () => {
     setIsOpen(!isOpen);
@@ -18,14 +36,24 @@ const Finance = () => {
 
   const handleCreateClick = () => {
     setSpendingTypeCount(spendingTypeCount + 1);
-    setAllNames((prev) => [...prev, newName]);
+    const name = newName? newName : "Category " + (spendingTypeCount + 1);
+    const newCategory: SpendingCategory = {
+      name: name,
+      total: 0,
+    }
+    // setAllNames((prev) => [...prev, newName]);
     setNewName("");
     setIsOpen(!isOpen);
+    setAllCategory((prev) => [...prev, newCategory]);
   };
 
   return (
-    <div>
-      <center>
+    <div className = "finance">
+        <Summary 
+        income={10000}
+        spending={spendings}
+        categories = {allCategory}>
+        </Summary>
         <div className="heading">
           <h1 className="spendingTotal">Total Spendings: ${spendings} </h1>
           <button
@@ -38,7 +66,7 @@ const Finance = () => {
         </div>
 
         {isOpen && (
-          <div>
+          <div className="createButton">
             <input
               style={{ marginTop: "20px" }}
               name="spendingCardName"
@@ -57,14 +85,14 @@ const Finance = () => {
         <div className="spendings">
           {Array.from({ length: spendingTypeCount }, (_, i) => {
             return (
-              <SpendingCard
-                name={allNames[i] ? allNames[i] : `Category ${i + 1}`}
-                total={0}
+              <SpendingCard 
+                index={i}
+                name={allCategory[i].name ? allCategory[i].name : `Category ${i + 1}`}
+                totalUpdate={handletotal}
               />
             );
           })}
         </div>
-      </center>
     </div>
   );
 };

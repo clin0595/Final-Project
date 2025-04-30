@@ -6,16 +6,18 @@ import "../pages/finance"
 
 
 type SpendingCardProps = {
+  index: number;
   name: string;
-  total: number;
+  totalUpdate: (newTotal: number, index: number) => void;
 };
 
-const SpendingCard = ({ name,total }: SpendingCardProps) => {
+const SpendingCard = ({ index, name, totalUpdate }: SpendingCardProps) => {
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [itemCount, setItemCount] = useState<number>(0);
   const [allItems, setAllItems] = useState<Item[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   const [newItemName, setNewItemName] = useState("");
+  const [newNotes, setNewNotes] = useState("");
   const [newCost, setNewCost] = useState("");
   const handleItemClick = () => {
     setIsOpen(!isOpen);
@@ -24,15 +26,29 @@ const SpendingCard = ({ name,total }: SpendingCardProps) => {
     const newItem: Item = {
       name: newItemName,
       price: convertToCurrencyFormat(newCost),
+      note: newNotes
     };
     setItemCount(itemCount + 1);
     setAllItems((prev) => [...prev, newItem]);
+    totalUpdate(Number(convertToCurrencyFormat(newCost)), index)
     setNewItemName("");
     setNewCost("");
+    setNewNotes("");
     setIsOpen(!isOpen);
-    setTotalPrice(totalPrice + Number(newItem.price));
-    total = totalPrice;
+    const updatedTotal = totalPrice + Number(newItem.price);
+    setTotalPrice(updatedTotal);
+    
   };
+
+  function handleInput(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    const textbox = document.getElementById('notes')
+    if (textbox) {
+      textbox.style.height = "auto";
+      textbox.style.height = textbox.scrollHeight + "px";
+    }
+    setNewNotes(e.target.value);
+  }
+
 
   return (
     <div className="spendingBox">
@@ -40,8 +56,9 @@ const SpendingCard = ({ name,total }: SpendingCardProps) => {
         <h2 className="spendingTitle">{name}</h2>
         <button className="newSpendingTypeButton" onClick={handleItemClick}>
           + Purchase
-        </button>
+        </button >
         {isOpen && (
+          <div className="addItem">
           <div className="add">
             <input
               name="ItemName"
@@ -67,6 +84,15 @@ const SpendingCard = ({ name,total }: SpendingCardProps) => {
               value={newCost}
               onChange={(e) => setNewCost(e.target.value)}
             />
+            </div>
+            <div className="notesBox">
+            <textarea id = "notes"
+              name="Notes"
+              placeholder="Notes"
+              value={newNotes}
+              onInput={handleInput}
+            />
+            </div>
             <button className="createButton" onClick={handleCreateClick}>
               +
             </button>
@@ -77,6 +103,7 @@ const SpendingCard = ({ name,total }: SpendingCardProps) => {
             <ItemCard
               name={allItems[i].name ? allItems[i].name : `Item ${i + 1}`}
               price={allItems[i].price ? allItems[i].price : "0.00"}
+              note={allItems[i].note}
             />
           );
         })}
