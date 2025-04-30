@@ -6,6 +6,7 @@ import {
     Group,
     Burger,
     rem,
+    Flex,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Link } from "react-router-dom";
@@ -13,14 +14,14 @@ import { Link } from "react-router-dom";
 const useStyles = createStyles((theme) => ({
     header: {
         display: "flex",
-        justifyContent: "start",
+        justifyContent: "center",
         gap: "2rem",
         alignItems: "center",
         height: "100%",
     },
 
     links: {
-        [theme.fn.smallerThan("xs")]: {
+        [theme.fn.smallerThan("s")]: {
             display: "none",
         },
     },
@@ -41,8 +42,8 @@ const useStyles = createStyles((theme) => ({
             theme.colorScheme === "dark"
                 ? theme.colors.dark[1]
                 : theme.colors.green[9],
-        fontSize: theme.fontSizes.sm,
-        fontWeight: 500,
+        fontSize: theme.fontSizes.md,
+        fontWeight: 700,
 
         "&:hover": {
             backgroundColor:
@@ -91,9 +92,9 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
     ));
 
     return (
-        <Header height={60}>
-            <Container className={classes.header}>
-                <img src="temp.png" height="50px"></img>
+        <Header height={60} style={{display: "flex", alignItems: "center",}}>
+            <img src="temp.png" height="50px"></img>
+            <Container className={classes.header} >
                 <Group spacing={5} className={classes.links}>
                     {items}
                 </Group>
@@ -104,6 +105,7 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
                     size='sm'
                 />
             </Container>
+            <button style={{padding: "10px", backgroundColor: "#56694f", color: "#d1e2ca"}}>Logout</button>
         </Header>
     );
 }
