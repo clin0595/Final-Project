@@ -5,10 +5,12 @@ import { ExchangeResponse } from "@full-stack/types";
 import fetch from "node-fetch";
 import 'dotenv/config'
 
+
+
 const app: Express = express();
 
 const hostname = "0.0.0.0";
-const port = 5173;
+const port = 8081;
 
 app.use(cors());
 app.use(express.json());
@@ -19,6 +21,7 @@ export type ExchangeRateData = {
         [currency: string]: number;
     };
 };
+
 
 
 app.get("/goal", async (req, res) => {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     createStyles,
     Header,
@@ -6,10 +6,17 @@ import {
     Group,
     Burger,
     rem,
-    Flex,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Link } from "react-router-dom";
+import {
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged,
+    GoogleAuthProvider,
+    signInWithPopup,
+} from "firebase/auth";
+import { auth } from "C:/Users/india/INFO1998/finalProj/Final-Project/backend/firebase_folder/fireBase_Auth";  // Ensure this path is correct
 
 const useStyles = createStyles((theme) => ({
     header: {
@@ -65,6 +72,22 @@ const useStyles = createStyles((theme) => ({
                     : theme.colors.green[8],
         },
     },
+
+    loginButton: {
+        marginRight: "10px",
+        padding: "8px 16px",
+        backgroundColor: "#56694f",
+        color: "#d1e2ca",
+        border: "none",
+        borderRadius: theme.radius.sm,
+        cursor: "pointer",
+        fontSize: theme.fontSizes.md,
+        fontWeight: 700,
+
+        "&:hover": {
+            backgroundColor: "#4a5e41",
+        },
+    },
 }));
 
 interface HeaderSimpleProps {
@@ -74,7 +97,41 @@ interface HeaderSimpleProps {
 export function HeaderSimple({ links }: HeaderSimpleProps) {
     const [opened, { toggle }] = useDisclosure(false);
     const [active, setActive] = useState(links[0].link);
+    const [user, setUser] = useState<any>(null); // State for tracking user
+    const [error, setError] = useState<string | null>(null); // State for tracking errors
     const { classes, cx } = useStyles();
+
+    // Check the auth state when the component mounts
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser); // Update the user state when authentication state changes
+        });
+
+        return () => unsubscribe(); // Cleanup subscription on component unmount
+    }, []);
+
+    // Handle login/logout logic
+    const handleLoginClick = async () => {
+        if (user) {
+            // If the user is logged in, log them out
+            try {
+                await signOut(auth);
+                console.log("User signed out");
+                setUser(null); // Update user state
+            } catch (error: any) {
+                setError(`Sign-out failed: ${error.message}`);
+            }
+        } else {
+            // If the user is not logged in, log them in using Google
+            try {
+                const provider = new GoogleAuthProvider();
+                await signInWithPopup(auth, provider);
+                console.log("User signed in with Google");
+            } catch (error: any) {
+                setError(`Sign-in with Google failed: ${error.message}`);
+            }
+        }
+    };
 
     const items = links.map((link) => (
         <Link
@@ -83,29 +140,27 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
             className={cx(classes.link, {
                 [classes.linkActive]: active === link.link,
             })}
-            onClick={(event) => {
-                setActive(link.link);
-            }}
+            onClick={() => setActive(link.link)}
         >
             {link.label}
         </Link>
     ));
 
     return (
-        <Header height={60} style={{display: "flex", alignItems: "center",marginLeft: "10px"}}>
-            <h3 style={{color: "#cd9b59"}}>CASH FLOW</h3>
-            <Container className={classes.header} >
+        <Header height={60} style={{ display: "flex", alignItems: "center", marginLeft: "10px" }}>
+            <h3 style={{ color: "#cd9b59" }}>CASH FLOW</h3>
+            <Container className={classes.header}>
                 <Group spacing={5} className={classes.links}>
                     {items}
                 </Group>
-                <Burger
-                    opened={opened}
-                    onClick={toggle}
-                    className={classes.burger}
-                    size='sm'
-                />
+                <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
             </Container>
-            <button style={{marginRight: "10px", backgroundColor: "#56694f", color: "#d1e2ca"}}>Login</button>
+            <div>
+                <button className={classes.loginButton} onClick={handleLoginClick}>
+                    {user ? "Logout" : "Login with Google"}
+                </button>
+                {error && <p style={{ color: 'red', fontSize: '14px' }}>{error}</p>}
+            </div>
         </Header>
     );
 }
