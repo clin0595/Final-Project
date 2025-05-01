@@ -38,7 +38,7 @@ const Exchange = () => {
     return (
         <center>
         <div className="currencyExchange">
-          <h1 className="summaryTitle">Set a budget!</h1>
+          <h1 className="homeTitle">Wish List</h1>
         </div>
         <div className="currencyExchange">
           <h1 className="summaryTitle">Planning a Vacation Overseas?</h1>

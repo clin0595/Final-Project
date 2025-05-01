@@ -97,7 +97,8 @@
 .container {
   display: flex;
   padding: 50px;
-  background-color: #56694f;
+  background-color: #42503d;
+  background-image: linear-gradient(#343d31, #56694f);
   align-items: center;
 }
 
@@ -144,15 +145,17 @@
 
 .homeTitle {
   color: #d1e2ca;
-  /* background-color:#fdf1d1;  */
-  /* padding: 10px 20px;  */
-  /* border-radius: 10px; */
   font-size: 70px;
 }
 
-.coins {
-  margin-left: 50px;
-  width: 33rem;
+.circle {
+  margin-left: 45px;
+  width: 30rem;
+  height: 30rem; 
+  background-color: #fdf1d1;
+  border-radius: 50%;
+  display: flex;
+  padding: 20px;
 }
 
 /* Summary */
@@ -230,7 +233,6 @@
 .container {
   display: flex;
   padding: 50px;
-  background-color: #56694f;
   align-items: center;
 }
 

@@ -1,14 +1,14 @@
 const HomePage = () => (
     <div> 
         <div className="container">
-            <img src="Piggy.png" className="coins"></img>
+            <div className="circle"><img src="Piggy.png"></img></div>
             <div className="text">
-            <h1 className="homeTitle">Welcome to CashFlow!</h1>
-            <p >
-                Your own personal expenses organizer to track down how much you have spent. 
-                Budget Tracker helps you stay on top of your expenses by letting you set goals 
-                and monitor your progress. Stay organized, stay within budget, and save your wallet!
-            </p>
+                <h1 className="homeTitle">Welcome to CashFlow!</h1>
+                <p >
+                    Your own personal expenses organizer to track down how much you have spent. 
+                    Budget Tracker helps you stay on top of your expenses by letting you set goals 
+                    and monitor your progress. Stay organized, stay within budget, and save your wallet!
+                </p>
             </div>
         </div>
         <div className="incomeTitle">
