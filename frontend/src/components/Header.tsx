@@ -6,6 +6,7 @@ import {
     Group,
     Burger,
     rem,
+    Flex,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { Link } from "react-router-dom";
@@ -13,14 +14,14 @@ import { Link } from "react-router-dom";
 const useStyles = createStyles((theme) => ({
     header: {
         display: "flex",
-        justifyContent: "start",
+        justifyContent: "center",
         gap: "2rem",
         alignItems: "center",
         height: "100%",
     },
 
     links: {
-        [theme.fn.smallerThan("xs")]: {
+        [theme.fn.smallerThan("s")]: {
             display: "none",
         },
     },
@@ -39,10 +40,10 @@ const useStyles = createStyles((theme) => ({
         textDecoration: "none",
         color:
             theme.colorScheme === "dark"
-                ? theme.colors.dark[0]
-                : theme.colors.gray[7],
-        fontSize: theme.fontSizes.sm,
-        fontWeight: 500,
+                ? theme.colors.dark[1]
+                : theme.colors.green[9],
+        fontSize: theme.fontSizes.md,
+        fontWeight: 700,
 
         "&:hover": {
             backgroundColor:
@@ -54,14 +55,14 @@ const useStyles = createStyles((theme) => ({
 
     linkActive: {
         "&, &:hover": {
-            backgroundColor: theme.fn.variant({
-                variant: "light",
-                color: theme.primaryColor,
-            }).background,
-            color: theme.fn.variant({
-                variant: "light",
-                color: theme.primaryColor,
-            }).color,
+            backgroundColor:
+                theme.colorScheme === "dark"
+                    ? theme.colors.dark[0]
+                    : theme.colors.yellow[1],
+            color:
+                theme.colorScheme === "dark"
+                    ? theme.colors.dark[1]
+                    : theme.colors.green[8],
         },
     },
 }));
@@ -91,9 +92,9 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
     ));
 
     return (
-        <Header height={60}>
-            <Container className={classes.header}>
-                <img src="temp.png" height="50px"></img>
+        <Header height={60} style={{display: "flex", alignItems: "center",marginLeft: "10px"}}>
+            <h3 style={{color: "#cd9b59"}}>CASH FLOW</h3>
+            <Container className={classes.header} >
                 <Group spacing={5} className={classes.links}>
                     {items}
                 </Group>
@@ -104,6 +105,7 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
                     size='sm'
                 />
             </Container>
+            <button style={{marginRight: "10px", backgroundColor: "#56694f", color: "#d1e2ca"}}>Logout</button>
         </Header>
     );
 }
