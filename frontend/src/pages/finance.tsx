@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SpendingCard from "../components/SpendingCard";
 import Summary from "../components/Summary";
+import { useLocation } from "react-router-dom";
 import "./style.css";
 
 const Finance = () => {
@@ -9,6 +10,11 @@ const Finance = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [newName, setNewName] = useState("");
   const [allCategory, setAllCategory] = useState<SpendingCategory[]>([]);
+
+  const location = useLocation();
+  const incomeFromHome = location.state?.income ?? 10000;
+  const [newIncome, setIncome] = useState(incomeFromHome);
+
   const handletotal = (newTotal: number, index: number) => {
     setSpendings(spendings + newTotal);
     allCategory[index].total += newTotal;
@@ -46,7 +52,7 @@ const Finance = () => {
   return (
     <div className="finance">
       <Summary
-        income={10000}
+        income={newIncome}
         spending={spendings}
         categories={allCategory}
       ></Summary>
