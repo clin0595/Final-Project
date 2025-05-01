@@ -1,6 +1,8 @@
-.finance{
+/* Finance */
+
+.finance {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   flex-direction: column;
 }
@@ -13,54 +15,48 @@
   justify-content: center;
 }
 
-
 .spendingTotal {
   font-size: 1.5rem;
   background-color: #56694f;
-  padding: 10px; 
+  padding: 10px;
   border-radius: 5px;
   color: #cee5c5;
 }
 
-#notes{
-  width: 358px;
-  margin-right: 10px;
-  margin-top: 5px;
-  margin-bottom: 5px; 
-  overflow: hidden;
-  resize: none;
+.heading {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#totalSpendings{
-  align-self: center;
-  font-size: 15px;
-  line-height: 17px;
-  padding: 15px;
-  width: 300px;
-  overflow-wrap: break-word;
-  text-align: center;
+.addItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+/* Spending Card */
+
 .spendingBox {
   background-color: #56694f;
   border-radius: 20px;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: stretch;
   justify-content: center;
-  
 }
 
-.newSpendingTypeButton{
+.newSpendingTypeButton {
   display: flex;
   margin: 0 auto;
 }
-
 
 .spendingTitle {
   font-size: 1.5rem;
   text-align: center;
   background-color: #fdf1d1;
-  padding: 20px; 
+  padding: 20px;
   border-radius: 5px;
   color: #cd9b59;
 }
@@ -72,7 +68,32 @@
   align-items: center;
 }
 
-/* for the home page */
+#notes {
+  width: 358px;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  resize: none;
+}
+
+.addItem{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#totalSpendings {
+  align-self: center;
+  font-size: 15px;
+  line-height: 17px;
+  padding: 15px;
+  width: 300px;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+
+/* Home */
 .container {
   display: flex;
   padding: 50px;
@@ -122,11 +143,11 @@
 }
 
 .homeTitle {
-  color: #56694f;
-  background-color:#fdf1d1; 
-  padding: 10px 20px; 
-  border-radius: 10px;
-  font-size: 3rem;
+  color: #d1e2ca;
+  /* background-color:#fdf1d1;  */
+  /* padding: 10px 20px;  */
+  /* border-radius: 10px; */
+  font-size: 70px;
 }
 
 .coins {
@@ -134,15 +155,8 @@
   width: 33rem;
 }
 
-/* end of the home page */
-
-.addItem{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.summaryContainer{
+/* Summary */
+.summaryContainer {
   margin: 0 auto;
   margin-top: 10px;
   background-color: #56694f;
@@ -150,7 +164,7 @@
   width: 1100px;
   padding: 10px;
 }
-.summaryTitle{
+.summaryTitle {
   text-align: center;
 }
 .summaryBox {
@@ -164,7 +178,7 @@
   width: 30%;
 }
 
-.info{
+.info {
   background-color: white;
   margin: 7px;
   padding: 10px;
@@ -172,25 +186,26 @@
   flex: 1;
 }
 
-.dataContainer{
+.dataContainer {
   display: flex;
   margin-left: 50px;
 }
-.dataBox{
+.dataBox {
   display: flex;
   flex-direction: column;
+  padding-bottom: 10px;
 }
 
-.bugettingTitle{
+.bugettingTitle {
   text-align: left;
 }
 
-.data{
+.data {
   position: relative;
   margin-top: 8px;
 }
 
-.chart{
+.chart {
   margin-left: 125px;
   padding-top: 50px;
   display: flex;
@@ -205,3 +220,28 @@
   width: 1100px;
   padding: 10px;
 }
+
+/* Home */
+.coins {
+  margin-left: 100px;
+  width: 300px;
+}
+
+.container {
+  display: flex;
+  padding: 50px;
+  background-color: #56694f;
+  align-items: center;
+}
+
+.text {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.title {
+  color: #cee5c5;
+  font-size: 3rem;
+}
+

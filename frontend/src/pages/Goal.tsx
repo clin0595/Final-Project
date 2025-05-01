@@ -22,10 +22,7 @@ const Exchange = () => {
         getExchange().then((data) => {
           setExchange(data);
           console.log(data)
-        });
-
-        
-    }, []);
+        })}, []);
 
     const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setAmount(e.target.value);

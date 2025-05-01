@@ -2,8 +2,7 @@ import { useState } from "react";
 import ItemCard from "./ItemCard";
 import "../util";
 import { convertToCurrencyFormat } from "../util";
-import "../pages/finance"
-
+import "../pages/finance";
 
 type SpendingCardProps = {
   index: number;
@@ -26,22 +25,21 @@ const SpendingCard = ({ index, name, totalUpdate }: SpendingCardProps) => {
     const newItem: Item = {
       name: newItemName,
       price: convertToCurrencyFormat(newCost),
-      note: newNotes
+      note: newNotes,
     };
     setItemCount(itemCount + 1);
     setAllItems((prev) => [...prev, newItem]);
-    totalUpdate(Number(convertToCurrencyFormat(newCost)), index)
+    totalUpdate(Number(convertToCurrencyFormat(newCost)), index);
     setNewItemName("");
     setNewCost("");
     setNewNotes("");
     setIsOpen(!isOpen);
     const updatedTotal = totalPrice + Number(newItem.price);
     setTotalPrice(updatedTotal);
-    
   };
 
   function handleInput(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    const textbox = document.getElementById('notes')
+    const textbox = document.getElementById("notes");
     if (textbox) {
       textbox.style.height = "auto";
       textbox.style.height = textbox.scrollHeight + "px";
@@ -49,49 +47,49 @@ const SpendingCard = ({ index, name, totalUpdate }: SpendingCardProps) => {
     setNewNotes(e.target.value);
   }
 
-
   return (
     <div className="spendingBox">
       <div className="spendingHeader">
         <h2 className="spendingTitle">{name}</h2>
         <button className="newSpendingTypeButton" onClick={handleItemClick}>
           + Purchase
-        </button >
+        </button>
         {isOpen && (
           <div className="addItem">
-          <div className="add">
-            <input
-              name="ItemName"
-              placeholder="Purchase Name"
-              value={newItemName}
-              onChange={(e) => setNewItemName(e.target.value)}
-            />
-            <br />
-            <span
-              style={{
-                marginRight: "4px",
-                marginLeft: "10px",
-                fontSize: "16px",
-              }}
-            >
-              $
-            </span>
-            <input
-              style={{ width: "130px", marginRight: "10px" }}
-              name="Cost"
-              type="number"
-              placeholder="0.00"
-              value={newCost}
-              onChange={(e) => setNewCost(e.target.value)}
-            />
+            <div className="add">
+              <input
+                name="ItemName"
+                placeholder="Purchase Name"
+                value={newItemName}
+                onChange={(e) => setNewItemName(e.target.value)}
+              />
+              <br />
+              <span
+                style={{
+                  marginRight: "4px",
+                  marginLeft: "10px",
+                  fontSize: "16px",
+                }}
+              >
+                $
+              </span>
+              <input
+                style={{ width: "130px", marginRight: "10px" }}
+                name="Cost"
+                type="number"
+                placeholder="0.00"
+                value={newCost}
+                onChange={(e) => setNewCost(e.target.value)}
+              />
             </div>
             <div className="notesBox">
-            <textarea id = "notes"
-              name="Notes"
-              placeholder="Notes"
-              value={newNotes}
-              onInput={handleInput}
-            />
+              <textarea
+                id="notes"
+                name="Notes"
+                placeholder="Notes"
+                value={newNotes}
+                onInput={handleInput}
+              />
             </div>
             <button className="createButton" onClick={handleCreateClick}>
               + add

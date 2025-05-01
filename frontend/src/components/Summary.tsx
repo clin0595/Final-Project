@@ -2,10 +2,10 @@ import PieChart from "./PieChart";
 import "./styles.css";
 
 type SummaryProps = {
-    income: number;
-    spending: number;
-    categories: SpendingCategory[];
-  };
+  income: number;
+  spending: number;
+  categories: SpendingCategory[];
+};
 
 const Summary = ({income, spending, categories} : SummaryProps) => {
     return(
