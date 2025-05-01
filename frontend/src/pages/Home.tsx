@@ -3,7 +3,7 @@ const HomePage = () => (
         <div className="container">
             <img src="Piggy.png" className="coins"></img>
             <div className="text">
-            <h1 className="title">Welcome to CashFlow!</h1>
+            <h1 className="homeTitle">Welcome to CashFlow!</h1>
             <p >
                 Your own personal expenses organizer to track down how much you have spent. 
                 Budget Tracker helps you stay on top of your expenses by letting you set goals 

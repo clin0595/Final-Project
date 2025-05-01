@@ -68,7 +68,32 @@
   align-items: center;
 }
 
-/* for the home page */
+#notes {
+  width: 358px;
+  margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  resize: none;
+}
+
+.addItem{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#totalSpendings {
+  align-self: center;
+  font-size: 15px;
+  line-height: 17px;
+  padding: 15px;
+  width: 300px;
+  overflow-wrap: break-word;
+  text-align: center;
+}
+
+/* Home */
 .container {
   display: flex;
   padding: 50px;
@@ -115,42 +140,19 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-#notes {
-  width: 358px;
-  margin-right: 10px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  overflow: hidden;
-  resize: none;
 }
 
-.title {
-  color: #56694f;
-  background-color:#fdf1d1; 
-  padding: 10px 20px; 
-  border-radius: 10px;
-  font-size: 3rem;
+.homeTitle {
+  color: #d1e2ca;
+  /* background-color:#fdf1d1;  */
+  /* padding: 10px 20px;  */
+  /* border-radius: 10px; */
+  font-size: 70px;
 }
 
 .coins {
   margin-left: 50px;
   width: 33rem;
-}
-
-/* end of the home page */
-
-.addItem{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-#totalSpendings {
-  align-self: center;
-  font-size: 15px;
-  line-height: 17px;
-  padding: 15px;
-  width: 300px;
-  overflow-wrap: break-word;
-  text-align: center;
 }
 
 /* Summary */
