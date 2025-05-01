@@ -1,5 +1,17 @@
-const HomePage = () => (
-    <div> 
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+
+const HomePage = () => {
+    const [newIncome, setIncome] = useState(10000);
+    const navigate = useNavigate();
+
+    const handleNewIncome = () => {
+        navigate("/Finances", { state: { income: newIncome } });
+    };
+
+    return (
+        <div> 
         <div className="container">
             <div className="circle"><img src="Piggy.png"></img></div>
             <div className="text">
@@ -13,8 +25,8 @@ const HomePage = () => (
         </div>
         <div className="incomeTitle">
             Enter your yearly income here before going to the finance page: 
-            <input style={{marginLeft: "20px", marginRight: "10px"}}></input> 
-            <button>✔</button>
+            <input style={{marginLeft: "20px", marginRight: "10px"}} value={newIncome} onChange={(e) => setIncome(Number(e.target.value))}/>
+            <button onClick={handleNewIncome}>✔</button>
         </div>
         <div className="infoGrid">
             <div>
@@ -33,7 +45,7 @@ const HomePage = () => (
             </div>
         </div>
     </div>
-    
-);
+    );
+};
 
 export default HomePage;

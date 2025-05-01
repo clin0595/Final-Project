@@ -37,9 +37,7 @@ const Exchange = () => {
 
     return (
         <center>
-        <div className="currencyExchange">
-          <h1 className="homeTitle">Wish List</h1>
-        </div>
+        
         <div className="currencyExchange">
           <h1 className="summaryTitle">Planning a Vacation Overseas?</h1>
           <div>
@@ -67,7 +65,7 @@ const Exchange = () => {
               </select>
             </div>
             <div>
-              <p>
+              <p className = "conversionText">
                 {amount? amount : '0.00'} USD is equivalent to {convertToCurrencyFormat(String(Number(amount) * selectedRate))} {selectedCurrency}.
               </p>
             </div>

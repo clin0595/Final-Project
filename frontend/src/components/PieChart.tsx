@@ -13,10 +13,10 @@ type PieChartProp = {
 
 const PieChart = ({ income, spending, categories }: PieChartProp) => {
   const data = {
-    labels: [categories.map((cat) => cat.name), "Savings"],
+    labels: [...categories.map((cat) => cat.name), "Savings"],
     datasets: [
       {
-        data: [categories.map((cat) => cat.total), income - spending],
+        data: [...categories.map((cat) => cat.total), income - spending],
         backgroundColor: [
           "#fdf1d1",
           "#cd9b59",
@@ -28,7 +28,7 @@ const PieChart = ({ income, spending, categories }: PieChartProp) => {
           "#d2a679",
         ],
         borderRadius: 5,
-        borderWidth: 2,
+        borderWidth: 7,
         borderColor: "#56694f",
       },
     ],

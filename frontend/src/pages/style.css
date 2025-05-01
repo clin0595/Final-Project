@@ -149,7 +149,7 @@
 }
 
 .circle {
-  margin-left: 45px;
+  margin-left: 35px;
   width: 30rem;
   height: 30rem; 
   background-color: #fdf1d1;
@@ -247,3 +247,8 @@
   font-size: 3rem;
 }
 
+/* Goals */
+
+.conversionText{
+  background-color: white;
+}
