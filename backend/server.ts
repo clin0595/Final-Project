@@ -8,7 +8,7 @@ import 'dotenv/config'
 const app: Express = express();
 
 const hostname = "0.0.0.0";
-const port = 5173;
+const port = 8080;
 
 app.use(cors());
 app.use(express.json());

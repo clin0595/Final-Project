@@ -11,7 +11,6 @@ const Finance = () => {
   const [allCategory, setAllCategory] = useState<SpendingCategory[]>([]);
   const handletotal = (newTotal: number, index: number) => {
     setSpendings(spendings + newTotal);
-    allCategory[index].total += newTotal;
 
     setAllCategory((prev) =>
       prev.map((cat, i) => {
@@ -20,9 +19,8 @@ const Finance = () => {
             ...cat,
             total: cat.total + newTotal,
           };
-        } else {
-          return cat;
         }
+        return cat;
       })
     );
   };
@@ -41,6 +39,8 @@ const Finance = () => {
     setNewName("");
     setIsOpen(!isOpen);
     setAllCategory((prev) => [...prev, newCategory]);
+    console.log(allCategory);
+    
   };
 
   return (
