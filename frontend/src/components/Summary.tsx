@@ -16,13 +16,13 @@ const Summary = ({income, spending, categories} : SummaryProps) => {
             <div className="summaryBox">
                     <div className="summaryContext">
                         <div className="info">Income:
-                            <span style={{fontSize: "2rem", fontWeight: "bold", marginTop: "10px",color: "#cd9b59", }}>{income}</span>
+                            <span className = "tags">{income}</span>
                         </div>
                         <div className="info">Spending:
-                            <span style={{fontSize: "2rem", fontWeight: "bold", marginTop: "10px",color: "#cd9b59",}}>{spending}</span>
+                            <span className = "tags">{spending}</span>
                         </div>
                         <div className="info">Savings:
-                            <span style={{fontSize: "2rem", fontWeight: "bold", marginTop: "10px",color: "#cd9b59",}}>{income - spending}</span>
+                            <span className = "tags">{income - spending}</span>
                         </div>
                     </div>
                 <div className="dataContainer">

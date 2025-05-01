@@ -8,7 +8,7 @@ import 'dotenv/config'
 const app: Express = express();
 
 const hostname = "0.0.0.0";
-const port = 8082;
+const port = 5173;
 
 app.use(cors());
 app.use(express.json());
@@ -22,10 +22,10 @@ export type ExchangeRateData = {
 
 
 app.get("/goal", async (req, res) => {
-    console.log("GET /goal was called");
+    // console.log("GET /goal was called");
     try {
         const response = await fetch(
-            `https://api.unirateapi.com/api/rates?api_key=${process.env.API_KEY}from=USD`
+            `https://api.unirateapi.com/api/rates?api_key=${process.env.API_KEY}`
         );
         const data = (await response.json()) as ExchangeRateData;
         const currencies = Object.keys(data.rates);

@@ -105,7 +105,7 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
                     size='sm'
                 />
             </Container>
-            <button style={{marginRight: "10px", backgroundColor: "#56694f", color: "#d1e2ca"}}>Logout</button>
+            <button style={{marginRight: "10px", backgroundColor: "#56694f", color: "#d1e2ca"}}>Login</button>
         </Header>
     );
 }
