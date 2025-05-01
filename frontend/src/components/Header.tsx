@@ -92,8 +92,8 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
     ));
 
     return (
-        <Header height={60} style={{display: "flex", alignItems: "center",}}>
-            <img src="temp.png" height="50px"></img>
+        <Header height={60} style={{display: "flex", alignItems: "center",marginLeft: "10px"}}>
+            <h3 style={{color: "#cd9b59"}}>CASH FLOW</h3>
             <Container className={classes.header} >
                 <Group spacing={5} className={classes.links}>
                     {items}
@@ -105,7 +105,7 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
                     size='sm'
                 />
             </Container>
-            <button style={{padding: "10px", backgroundColor: "#56694f", color: "#d1e2ca"}}>Logout</button>
+            <button style={{marginRight: "10px", backgroundColor: "#56694f", color: "#d1e2ca"}}>Logout</button>
         </Header>
     );
 }

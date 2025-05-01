@@ -130,8 +130,8 @@
 }
 
 .coins {
-  margin-left: 100px;
-  width: 300px;
+  margin-left: 50px;
+  width: 33rem;
 }
 
 /* end of the home page */
@@ -194,4 +194,14 @@
   margin-left: 125px;
   padding-top: 50px;
   display: flex;
+}
+
+/* Goal page */
+.currencyExchange {
+  margin: 0 auto;
+  margin-top: 10px;
+  background-color: #56694f;
+  border-radius: 20px;
+  width: 1100px;
+  padding: 10px;
 }

@@ -3,8 +3,6 @@ import SpendingCard from "../components/SpendingCard";
 import Summary from "../components/Summary";
 import "./style.css";
 
-
-
 const Finance = () => {
   const [allNames, setAllNames] = useState<string[]>([]);
   const [spendingTypeCount, setSpendingTypeCount] = useState<number>(0);

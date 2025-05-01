@@ -1,7 +1,7 @@
 const HomePage = () => (
     <div> 
         <div className="container">
-            <img src="coins.png" className="coins"></img>
+            <img src="Piggy.png" className="coins"></img>
             <div className="text">
             <h1 className="title">Welcome to CashFlow!</h1>
             <p >
@@ -13,7 +13,8 @@ const HomePage = () => (
         </div>
         <div className="incomeTitle">
             Enter your yearly income here before going to the finance page: 
-            <input style={{marginLeft: "20px"}}></input>
+            <input style={{marginLeft: "20px", marginRight: "10px"}}></input> 
+            <button>✔</button>
         </div>
         <div className="infoGrid">
             <div>

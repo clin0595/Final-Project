@@ -94,7 +94,7 @@ const SpendingCard = ({ index, name, totalUpdate }: SpendingCardProps) => {
             />
             </div>
             <button className="createButton" onClick={handleCreateClick}>
-              +
+              + add
             </button>
           </div>
         )}
