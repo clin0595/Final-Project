@@ -43,7 +43,7 @@ const Exchange = () => {
           <div>
             <h2 style={{color: "#cd9b59",}}>Currency Conversion</h2>
             <div>
-              <label htmlFor="amount" style={{color: "#cd9b59",fontWeight: "bold", marginRight: "5px"}}>Amount to Convert: </label>
+              <label htmlFor="amount" style={{color: "#cd9b59",fontWeight: "bold", marginRight: "5px",}}>Amount to Convert: </label>
               <input
                 type="number"
                 placeholder="0.00"
