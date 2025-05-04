@@ -6,11 +6,10 @@ import fetch from "node-fetch";
 import 'dotenv/config'
 
 
-
 const app: Express = express();
 
 const hostname = "0.0.0.0";
-const port = 8081;
+const port = 8090;
 
 app.use(cors());
 app.use(express.json());
@@ -42,6 +41,12 @@ app.get("/goal", async (req, res) => {
         res.status(500).json({ error: "Something went wrong" });
     }
 });
+
+app.post('/goal', (req, res) => {
+    const body = req.body
+    console.log(body)
+    res.send('This is a POST request')
+})
 
 app.listen(port, hostname, () => {
     console.log("Listening");

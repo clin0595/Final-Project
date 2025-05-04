@@ -16,7 +16,7 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
 } from "firebase/auth";
-import { auth } from "C:/Users/india/INFO1998/finalProj/Final-Project/backend/firebase_folder/fireBase_Auth";  // Ensure this path is correct
+import { auth } from "../../../backend/fireBase_Auth";
 
 const useStyles = createStyles((theme) => ({
     header: {
@@ -97,27 +97,27 @@ interface HeaderSimpleProps {
 export function HeaderSimple({ links }: HeaderSimpleProps) {
     const [opened, { toggle }] = useDisclosure(false);
     const [active, setActive] = useState(links[0].link);
-    const [user, setUser] = useState<any>(null); // State for tracking user
-    const [error, setError] = useState<string | null>(null); // State for tracking errors
+    const [user, setUser] = useState<any>(null); 
+    const [error, setError] = useState<string | null>(null); 
     const { classes, cx } = useStyles();
 
-    // Check the auth state when the component mounts
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser); // Update the user state when authentication state changes
+            setUser(currentUser); 
         });
 
-        return () => unsubscribe(); // Cleanup subscription on component unmount
+        return () => unsubscribe(); 
     }, []);
 
-    // Handle login/logout logic
+   
     const handleLoginClick = async () => {
         if (user) {
-            // If the user is logged in, log them out
+        
             try {
                 await signOut(auth);
                 console.log("User signed out");
-                setUser(null); // Update user state
+                setUser(null); 
             } catch (error: any) {
                 setError(`Sign-out failed: ${error.message}`);
             }
@@ -126,7 +126,7 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
             try {
                 const provider = new GoogleAuthProvider();
                 await signInWithPopup(auth, provider);
-                console.log("User signed in with Google");
+                console.log("Signed in with Google");
             } catch (error: any) {
                 setError(`Sign-in with Google failed: ${error.message}`);
             }
@@ -157,7 +157,7 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
             </Container>
             <div>
                 <button className={classes.loginButton} onClick={handleLoginClick}>
-                    {user ? "Logout" : "Login with Google"}
+                    {user ? "Logout" : "Login"}
                 </button>
                 {error && <p style={{ color: 'red', fontSize: '14px' }}>{error}</p>}
             </div>
