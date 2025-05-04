@@ -245,6 +245,13 @@
   padding: 10px;
 }
 
+.vacation {
+  background-color: #fdf1d1;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50rem;
+}
+
 /* Home */
 .coins {
   margin-left: 100px;

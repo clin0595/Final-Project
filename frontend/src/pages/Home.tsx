@@ -1,14 +1,31 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { auth, db } from "../../../backend/fireBase_Auth";
+import { doc, setDoc } from "firebase/firestore";
 
 
 const HomePage = () => {
     const [newIncome, setIncome] = useState(10000);
     const navigate = useNavigate();
 
-    const handleNewIncome = () => {
-        navigate("/Finances", { state: { income: newIncome } });
-    };
+    const handleNewIncome = async () => {
+        const user = auth.currentUser;
+        if (!user) return;
+      
+        try {
+          await setDoc(
+            doc(db, "users", user.uid),
+            { income: newIncome },
+            { merge: true }
+          );
+          console.log("Income saved to Firebase");
+      
+          navigate("/Finances", { state: { income: newIncome } });
+        } catch (error) {
+          console.error("Failed to save income:", error);
+        }
+      };
+      
 
     return (
         <div> 
