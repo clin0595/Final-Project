@@ -148,6 +148,11 @@
   font-size: 70px;
 }
 
+.goalTitle {
+  color: #d1e2ca;
+  font-size: 50px;
+}
+
 .circle {
   margin-left: 35px;
   width: 30rem;
