@@ -21,6 +21,6 @@
         "noFallthroughCasesInSwitch": true,
         "types": ["node"]
     },
-    "include": ["src"],
+    "include": ["src", "../backend/firebase_folder", "../backend/firebase_folder"],
     "references": [{ "path": "./tsconfig.node.json" }]
 }

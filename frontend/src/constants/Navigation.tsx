@@ -14,7 +14,7 @@ import HomePage from "../pages/Home";
  * If you've already deployed your app (using `fly launch` or `fly deploy`),
  * you can find the name by running `flyctl status`, under App > Name.
  */
-export const BACKEND_BASE_PATH = 'http://localhost:8080';
+export const BACKEND_BASE_PATH = 'http://localhost:8090';
 
 export const PATHS: {
     link: string;

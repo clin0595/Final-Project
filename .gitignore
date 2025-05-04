@@ -38,3 +38,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+firebase
+firebase.ts
+
+service_account
+service_account.json

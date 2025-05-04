@@ -1,8 +1,12 @@
 import { useState } from "react";
+import{ useEffect } from "react";
 import SpendingCard from "../components/SpendingCard";
 import Summary from "../components/Summary";
 import { useLocation } from "react-router-dom";
 import "./style.css";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { auth, db } from "../../../backend/fireBase_Auth";
+
 
 const Finance = () => {
   const [spendingTypeCount, setSpendingTypeCount] = useState<number>(0);
@@ -15,20 +19,61 @@ const Finance = () => {
   const incomeFromHome = location.state?.income ?? 10000;
   const [newIncome, setIncome] = useState(incomeFromHome);
 
-  const handletotal = (newTotal: number, index: number) => {
-    setSpendings(spendings + newTotal);
+  // Load user data on mount
+  useEffect(() => {
+    const fetchData = async () => {
+      const user = auth.currentUser;
+      if (!user) return;
 
-    setAllCategory((prev) =>
-      prev.map((cat, i) => {
-        if (i === index) {
-          return {
-            ...cat,
-            total: cat.total + newTotal,
-          };
+      try {
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          setIncome(data.income || 0);
+          setSpendings(data.spendings || 0);
+          setAllCategory(data.categories || []);
+          setSpendingTypeCount(data.categories?.length || 0);
         }
-        return cat;
-      })
-    );
+      } catch (error) {
+        console.error("Error loading data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // Save user data to Firestore
+  const saveUserData = async () => {
+    const user = auth.currentUser;
+    if (!user) return;
+
+    try {
+      await setDoc(doc(db, "users", user.uid), {
+        income: newIncome,
+        spendings,
+        categories: allCategory,
+      });
+      console.log("User data saved");
+    } catch (error) {
+      console.error("Failed to save data:", error);
+    }
+  };
+
+  const handletotal = (newTotal: number, index: number) => {
+    const updatedSpendings = spendings + newTotal;
+    const updatedCategories = allCategory.map((cat, i) => {
+      if (i === index) {
+        return { ...cat, total: cat.total + newTotal };
+      }
+      return cat;
+    });
+
+    setSpendings(updatedSpendings);
+    setAllCategory(updatedCategories);
+
+    setTimeout(saveUserData, 0); // Delay to ensure state is updated
   };
 
   const handleNewTypeClick = () => {
@@ -36,17 +81,19 @@ const Finance = () => {
   };
 
   const handleCreateClick = () => {
-    setSpendingTypeCount(spendingTypeCount + 1);
     const name = newName ? newName : "Category " + (spendingTypeCount + 1);
     const newCategory: SpendingCategory = {
       name: name,
       total: 0,
     };
+
+    const updatedCategories = [...allCategory, newCategory];
     setNewName("");
-    setIsOpen(!isOpen);
-    setAllCategory((prev) => [...prev, newCategory]);
-    console.log(allCategory);
-    
+    setIsOpen(false);
+    setSpendingTypeCount(spendingTypeCount + 1);
+    setAllCategory(updatedCategories);
+
+    setTimeout(saveUserData, 0);
   };
 
   return (
@@ -55,9 +102,9 @@ const Finance = () => {
         income={newIncome}
         spending={spendings}
         categories={allCategory}
-      ></Summary>
+      />
       <div className="heading">
-        <h1 className="spendingTotal">Total Spendings: ${spendings} </h1>
+        <h1 className="spendingTotal">Total Spendings: ${spendings}</h1>
         <button
           style={{ marginLeft: "10px" }}
           className="newSpendingTypeButton"
@@ -84,18 +131,18 @@ const Finance = () => {
           </button>
         </div>
       )}
+
       <div className="spendings">
-        {Array.from({ length: spendingTypeCount }, (_, i) => {
-          return (
-            <SpendingCard
-              index={i}
-              name={
-                allCategory[i].name ? allCategory[i].name : `Category ${i + 1}`
-              }
-              totalUpdate={handletotal}
-            />
-          );
-        })}
+        {Array.from({ length: spendingTypeCount }, (_, i) => (
+          <SpendingCard
+            key={i}
+            index={i}
+            name={
+              allCategory[i]?.name || `Category ${i + 1}`
+            }
+            totalUpdate={handletotal}
+          />
+        ))}
       </div>
     </div>
   );

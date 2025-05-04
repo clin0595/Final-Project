@@ -4,9 +4,28 @@ import { BACKEND_BASE_PATH } from "../constants/Navigation";
 import { convertToCurrencyFormat } from "../util";
 import "./style.css";
 
+
 const getExchange = () : Promise<ExchangeResponse[]> =>
     fetch(`${BACKEND_BASE_PATH}/goal`).then((res) => res.json());
 const Exchange = () => {
+    const postRequest = () => {
+      console.log("hi")
+      fetch(`${BACKEND_BASE_PATH}/goal`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify({key: 50})
+      }).then (response => console.log(response))
+      
+      // .then(data => {
+      //   console.log(data)
+      //   console.log("hi1")
+      // })
+      // .catch(error => {
+
+      // });
+    }
     const [amount, setAmount] = useState("");
     const [selectedCurrency, setSelectedCurrency] = useState<string>("USD");
     const [selectedRate, setSelectedRate] = useState(0);
@@ -21,7 +40,6 @@ const Exchange = () => {
         console.log("Loading Exchange Rate...");
         getExchange().then((data) => {
           setExchange(data);
-          console.log(data)
         })}, []);
 
     const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -70,6 +88,7 @@ const Exchange = () => {
               </p>
             </div>
           </div>
+          <button onClick={postRequest}>Does Something</button>
           </div>  
         </center>
     );
