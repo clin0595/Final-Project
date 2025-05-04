@@ -18,15 +18,35 @@ const Exchange = () => {
         }, 
         body: JSON.stringify({key: 50})
       }).then (response => console.log(response))
-      
-      // .then(data => {
-      //   console.log(data)
-      //   console.log("hi1")
-      // })
-      // .catch(error => {
-
-      // });
     }
+
+      const putRequest = () => {
+        console.log("attempt to PUT")
+        fetch(`${BACKEND_BASE_PATH}/goal`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          }, 
+          body: JSON.stringify({key: 100})
+        }).then (response => console.log(response))
+      
+    
+  }
+
+  
+  const deleteRequest = () => {
+    console.log("attempt to DELETE")
+    fetch(`${BACKEND_BASE_PATH}/goal`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      }, 
+      body: JSON.stringify({key: 0})
+    }).then (response => console.log(response))
+
+}
+
+
     const [amount, setAmount] = useState("");
     const [selectedCurrency, setSelectedCurrency] = useState<string>("USD");
     const [selectedRate, setSelectedRate] = useState(0);
@@ -79,7 +99,10 @@ const Exchange = () => {
                   start budgeting for each of them :3. 
                 </p>
                 <input value={bucketName} onChange={(e) => setBucketName(e.target.value)}/>
-                <button style={{marginLeft: "10px"}} onClick={handleNewBucket}>Add to your bucket list!</button> 
+                <button style={{marginLeft: "10px"}} onClick={() => {
+                  putRequest();
+                  handleNewBucket();
+                }}>Add to your bucket list!</button> 
               </div>
 
               <div className="bucketList">
@@ -125,6 +148,7 @@ const Exchange = () => {
             </div>
           </div>
           <button onClick={postRequest}>Does Something</button>
+          <button onClick={deleteRequest}>Does Something Else</button>
           </div>  
         </center>
     );

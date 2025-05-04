@@ -48,6 +48,18 @@ app.post('/goal', (req, res) => {
     res.send('This is a POST request')
 })
 
+app.put('/goal', (req, res) => {
+    const body = req.body
+    console.log(body)
+    res.send('This is a PUT request')
+})
+
+app.delete('/goal', (req, res) => {
+    const body = req.body;
+    console.log('DELETE /goal called with:', body);
+    res.send('This is a DELETE request');
+});
+
 app.listen(port, hostname, () => {
     console.log("Listening");
 });
