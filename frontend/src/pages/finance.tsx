@@ -19,7 +19,6 @@ const Finance = () => {
   const incomeFromHome = location.state?.income ?? 10000;
   const [newIncome, setIncome] = useState(incomeFromHome);
 
-  // Load user data on mount
   useEffect(() => {
     const fetchData = async () => {
       const user = auth.currentUser;
@@ -44,7 +43,7 @@ const Finance = () => {
     fetchData();
   }, []);
 
-  // Save user data to Firestore
+
   const saveUserData = async () => {
     const user = auth.currentUser;
     if (!user) return;
@@ -80,21 +79,54 @@ const Finance = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleCreateClick = () => {
+  const handleCreateClick = async () => {
+    const user = auth.currentUser;
+    if (!user) return;
+  
     const name = newName ? newName : "Category " + (spendingTypeCount + 1);
     const newCategory: SpendingCategory = {
       name: name,
       total: 0,
     };
-
+  
     const updatedCategories = [...allCategory, newCategory];
+  
     setNewName("");
     setIsOpen(false);
-    setSpendingTypeCount(spendingTypeCount + 1);
+    setSpendingTypeCount(updatedCategories.length);
     setAllCategory(updatedCategories);
-
-    setTimeout(saveUserData, 0);
+  
+    try {
+      await setDoc(doc(db, "users", user.uid), {
+        income: newIncome,
+        spendings,
+        categories: updatedCategories,
+      });
+      console.log("New category saved to Firebase");
+    } catch (error) {
+      console.error("Failed to save new category:", error);
+    }
   };
+  
+
+  const handleDeleteCategory = (indexToDelete: number) => {
+    const updatedCategories = allCategory.filter((_, i) => i !== indexToDelete);
+    const updatedSpendings = updatedCategories.reduce((sum, cat) => sum + cat.total, 0);
+  
+    setAllCategory(updatedCategories);
+    setSpendings(updatedSpendings);
+    setSpendingTypeCount(updatedCategories.length);
+
+    const user = auth.currentUser;
+    if (!user) return;
+  
+    setDoc(doc(db, "users", user.uid), {
+      income: newIncome,
+      spendings: updatedSpendings,
+      categories: updatedCategories,
+    })
+  };
+
 
   return (
     <div className="finance">
@@ -113,7 +145,7 @@ const Finance = () => {
           + Category
         </button>
       </div>
-
+  
       {isOpen && (
         <div className="createButton">
           <input
@@ -131,21 +163,29 @@ const Finance = () => {
           </button>
         </div>
       )}
-
+  
       <div className="spendings">
-        {Array.from({ length: spendingTypeCount }, (_, i) => (
-          <SpendingCard
-            key={i}
-            index={i}
-            name={
-              allCategory[i]?.name || `Category ${i + 1}`
-            }
-            totalUpdate={handletotal}
-          />
+        {allCategory.map((category, i) => (
+          <div key={i} className="spendingCardContainer" style={{ marginBottom: "20px" }}>
+            <SpendingCard
+              index={i}
+              name={category.name || `Category ${i + 1}`}
+              totalUpdate={handletotal}
+            />
+            <button
+              className="deleteButton"
+              style={{ marginTop: "10px", backgroundColor: "#e74c3c", color: "white", border: "none", padding: "6px 10px", borderRadius: "4px", cursor: "pointer" }}
+              onClick={() => {
+                handleDeleteCategory(i);
+              }}
+            >
+              Delete
+            </button>
+          </div>
         ))}
       </div>
     </div>
   );
-};
+}
 
 export default Finance;

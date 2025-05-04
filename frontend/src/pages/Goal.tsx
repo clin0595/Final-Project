@@ -29,13 +29,6 @@ const Exchange = () => {
           body: JSON.stringify({key: 100})
         }).then (response => console.log(response))
       
-      // .then(data => {
-      //   console.log(data)
-      //   console.log("hi1")
-      // })
-      // .catch(error => {
-
-      // });
     
   }
 
