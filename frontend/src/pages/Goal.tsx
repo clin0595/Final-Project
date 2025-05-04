@@ -3,6 +3,7 @@ import { ExchangeResponse } from "@full-stack/types";
 import { BACKEND_BASE_PATH } from "../constants/Navigation";
 import { convertToCurrencyFormat } from "../util";
 import "./style.css";
+import BucketItem from "../components/BucketItem";
 
 
 const getExchange = () : Promise<ExchangeResponse[]> =>
@@ -53,15 +54,44 @@ const Exchange = () => {
         update()
       };
 
+    const [bucketCount, setBucketCount] = useState<number>(0); 
+    const [bucketName, setBucketName] = useState(""); 
+    const [allItems, setAllItems] = useState<BucketCategory[]>([]); 
+
+    const handleNewBucket = () => {
+      setBucketCount(bucketCount + 1)
+      setBucketName(bucketName)
+      const newCategory: BucketCategory = {
+        name: bucketName,
+      };
+  
+      const updatedCategories = [...allItems, newCategory];
+      setAllItems(updatedCategories);
+      setBucketName("")
+    }
+
     return (
         <center>
-        <div className="currencyExchange">
-            <h1 className="goalTitle">Bucket List</h1>
-            <p>Here you could add anything you plan to do in near or distant furture! That way you can 
-              start budgeting for each of them :3. 
-            </p>
-            <input></input><button style={{marginLeft: "10px"}}>Add to your bucket list!</button> 
-        </div>
+          <div className="bucket">
+              <div>
+                <h1 className="goalTitle">Bucket List</h1>
+                <p>Here you could add anything you plan to do in near or distant furture! That way you can 
+                  start budgeting for each of them :3. 
+                </p>
+                <input value={bucketName} onChange={(e) => setBucketName(e.target.value)}/>
+                <button style={{marginLeft: "10px"}} onClick={handleNewBucket}>Add to your bucket list!</button> 
+              </div>
+
+              <div className="bucketList">
+                {Array.from({ length: bucketCount }, (_, i) => (
+                  <BucketItem
+                    name={ `${i + 1}) ${allItems[i].name}` }
+                  />
+                ))}
+              </div>
+          </div>
+          
+        
         <div className="currencyExchange">
           <h1 className="summaryTitle">Planning a Vacation Overseas?</h1>
           <div>

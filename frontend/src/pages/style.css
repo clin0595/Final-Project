@@ -220,6 +220,22 @@
 }
 
 /* Goal page */
+.bucketList {
+  margin-Left: 20px; 
+  color:#cee5c5; 
+}
+
+.bucket {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 10px;
+  background-color: #56694f;
+  border-radius: 20px;
+  width: 1100px;
+  padding: 10px;
+}
+
 .currencyExchange {
   margin: 0 auto;
   margin-top: 10px;

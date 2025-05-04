@@ -8,3 +8,8 @@ type SpendingCategory = {
   name: string;
   total: number;
 };
+
+
+type BucketCategory = {
+  name: string;
+};
