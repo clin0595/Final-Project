@@ -17,6 +17,17 @@ const Exchange = () => {
         }, 
         body: JSON.stringify({key: 50})
       }).then (response => console.log(response))
+    }
+
+      const putRequest = () => {
+        console.log("attempt to PUT")
+        fetch(`${BACKEND_BASE_PATH}/goal`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          }, 
+          body: JSON.stringify({key: 100})
+        }).then (response => console.log(response))
       
       // .then(data => {
       //   console.log(data)
@@ -25,7 +36,23 @@ const Exchange = () => {
       // .catch(error => {
 
       // });
-    }
+    
+  }
+
+  
+  const deleteRequest = () => {
+    console.log("attempt to DELETE")
+    fetch(`${BACKEND_BASE_PATH}/goal`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      }, 
+      body: JSON.stringify({key: 0})
+    }).then (response => console.log(response))
+
+}
+
+
     const [amount, setAmount] = useState("");
     const [selectedCurrency, setSelectedCurrency] = useState<string>("USD");
     const [selectedRate, setSelectedRate] = useState(0);
@@ -60,7 +87,7 @@ const Exchange = () => {
             <p>Here you could add anything you plan to do in near or distant furture! That way you can 
               start budgeting for each of them :3. 
             </p>
-            <input></input><button style={{marginLeft: "10px"}}>Add to your bucket list!</button> 
+            <input></input><button style={{marginLeft: "10px"}} onClick={putRequest}>Add to your bucket list!</button> 
         </div>
         <div className="currencyExchange">
           <h1 className="summaryTitle">Planning a Vacation Overseas?</h1>
@@ -95,6 +122,7 @@ const Exchange = () => {
             </div>
           </div>
           <button onClick={postRequest}>Does Something</button>
+          <button onClick={deleteRequest}>Does Something Else</button>
           </div>  
         </center>
     );
