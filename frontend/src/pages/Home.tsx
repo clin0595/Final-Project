@@ -5,7 +5,7 @@ import { doc, setDoc } from "firebase/firestore";
 
 
 const HomePage = () => {
-    const [newIncome, setIncome] = useState(10000);
+    const [newIncome, setIncome] = useState(0);
     const navigate = useNavigate();
 
     const handleNewIncome = async () => {
@@ -42,7 +42,7 @@ const HomePage = () => {
         </div>
         <div className="incomeTitle">
             Enter your yearly income here before going to the finance page: 
-            <input style={{marginLeft: "20px", marginRight: "10px"}} value={newIncome} onChange={(e) => setIncome(Number(e.target.value))}/>
+            <input style={{marginLeft: "20px", marginRight: "10px"}} onChange={(e) => setIncome(Number(e.target.value))}/>
             <button onClick={handleNewIncome}>✔</button>
         </div>
         <div className="infoGrid">

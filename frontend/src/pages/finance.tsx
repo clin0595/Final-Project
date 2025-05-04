@@ -177,7 +177,6 @@ const Finance = () => {
             />
             <button
               className="deleteButton"
-              style={{ marginTop: "10px", backgroundColor: "#e74c3c", color: "white", border: "none", padding: "6px 10px", borderRadius: "4px", cursor: "pointer" }}
               onClick={() => {
                 handleDeleteCategory(i);
               }}

@@ -61,6 +61,23 @@
   color: #cd9b59; 
 }
 
+.welcome {
+  margin-left: -30px;
+  margin-right: 5px;
+  color: #56694f;
+  font-weight: bold;
+}
+
+.deleteButton {
+  margin-top: 10px;
+  background-color: #c85649;
+  color: white; 
+  border: none; 
+  padding: 6px 10px;
+  border-radius: 4px; 
+  cursor: pointer; 
+}
+
 #totalSpendings{
   align-self: center;
   font-size: 15px;

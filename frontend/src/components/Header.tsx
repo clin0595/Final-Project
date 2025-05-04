@@ -100,6 +100,7 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
     const [error, setError] = useState<string | null>(null); 
     const { classes, cx } = useStyles();
 
+    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -112,7 +113,6 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
    
     const handleLoginClick = async () => {
         if (user) {
-        
             try {
                 await signOut(auth);
                 console.log("User signed out");
@@ -120,6 +120,7 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
             } catch (error: any) {
                 setError(`Sign-out failed: ${error.message}`);
             }
+            setIsLoggedIn(false);
         } else {
             // If the user is not logged in, log them in using Google
             try {
@@ -129,6 +130,7 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
             } catch (error: any) {
                 setError(`Sign-in with Google failed: ${error.message}`);
             }
+            setIsLoggedIn(true); 
         }
     };
 
@@ -147,7 +149,7 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
 
     return (
         <Header height={60} style={{ display: "flex", alignItems: "center", marginLeft: "10px" }}>
-            <h3 style={{ color: "#cd9b59" }}>CASH FLOW</h3>
+            <h3 style={{ color: "#cd9b59", marginLeft: "10px"}}>CASH FLOW</h3>
             <Container className={classes.header}>
                 <Group spacing={5} className={classes.links}>
                     {items}
@@ -155,6 +157,7 @@ export function HeaderSimple({ links }: HeaderSimpleProps) {
                 <Burger opened={opened} onClick={toggle} className={classes.burger} size="sm" />
             </Container>
             <div>
+                { isLoggedIn && <label className="welcome">Hi, {user?.displayName} </label>}
                 <button className={classes.loginButton} onClick={handleLoginClick}>
                     {user ? "Logout" : "Login"}
                 </button>
