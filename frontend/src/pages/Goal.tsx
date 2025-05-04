@@ -55,7 +55,13 @@ const Exchange = () => {
 
     return (
         <center>
-        
+        <div className="currencyExchange">
+            <h1 className="goalTitle">Bucket List</h1>
+            <p>Here you could add anything you plan to do in near or distant furture! That way you can 
+              start budgeting for each of them :3. 
+            </p>
+            <input></input><button style={{marginLeft: "10px"}}>Add to your bucket list!</button> 
+        </div>
         <div className="currencyExchange">
           <h1 className="summaryTitle">Planning a Vacation Overseas?</h1>
           <div>
