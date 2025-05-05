@@ -11,5 +11,6 @@ type SpendingCategory = {
 
 
 type BucketCategory = {
+  id: string;
   name: string;
 };

@@ -18,9 +18,11 @@ const SpendingCard = ({ index, name, totalUpdate }: SpendingCardProps) => {
   const [newItemName, setNewItemName] = useState("");
   const [newNotes, setNewNotes] = useState("");
   const [newCost, setNewCost] = useState("");
+  
   const handleItemClick = () => {
     setIsOpen(!isOpen);
   };
+
   const handleCreateClick = () => {
     const newItem: Item = {
       name: newItemName,

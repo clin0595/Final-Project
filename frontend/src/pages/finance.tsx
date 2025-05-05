@@ -15,9 +15,7 @@ const Finance = () => {
   const [newName, setNewName] = useState("");
   const [allCategory, setAllCategory] = useState<SpendingCategory[]>([]);
 
-  // const location = useLocation();
-  // const incomeFromHome = location.state?.income ?? 10000;
-  // const [newIncome, setIncome] = useState(incomeFromHome);
+
   const [newIncome, setIncome] = useState<number>(10000);
 
   useEffect(() => {
@@ -60,8 +58,6 @@ const Finance = () => {
       console.error("Failed to save data:", error);
     }
   };
-
-  
 
   const handletotal = (newTotal: number, index: number) => {
     const updatedSpendings = spendings + newTotal;

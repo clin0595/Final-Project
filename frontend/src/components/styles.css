@@ -78,6 +78,13 @@
   cursor: pointer; 
 }
 
+.bucketBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
 #totalSpendings{
   align-self: center;
   font-size: 15px;
