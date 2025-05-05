@@ -169,7 +169,7 @@ const Exchange = () => {
       </div>
 
       <div className="currencyExchange">
-        <h1 className="goalTitle">Planning a Vacation Overseas?</h1>
+        <h1 className="goalTitle">Planning to Invest?</h1>
         <div>
           <div className="vacation">
             <h2 style={{ color: "#cd9b59" }}>Currency Conversion</h2>
